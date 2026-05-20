@@ -7,136 +7,175 @@ export default function Home() {
   const [faculty, setFaculty] = useState("");
   const [topic, setTopic] = useState("");
   const [className, setClassName] = useState("");
-
   const [result, setResult] = useState("");
-  const [loading, setLoading] = useState(false);
 
-  async function generateLessonPlan() {
-    try {
-      setLoading(true);
+  const generateLessonPlan = () => {
+    const lesson = `
+LESSON PLAN
 
-      const message = `
 Subject: ${subject}
-Faculty: ${faculty}
+Faculty Name: ${faculty}
 Topic: ${topic}
 Class: ${className}
-`;
 
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          message,
-        }),
-      });
+----------------------------
 
-      const data = await response.json();
+Introduction:
+The teacher introduces the topic "${topic}" with simple examples and classroom interaction.
 
-      console.log("API DATA:", data);
+Learning Objectives:
+1. Understand the concept of ${topic}
+2. Improve subject knowledge
+3. Encourage classroom participation
 
-      setResult(data.reply || "No lesson plan generated");
+Teaching Method:
+- Explanation Method
+- Blackboard Teaching
+- Student Interaction
+- Activity Based Learning
 
-    } catch (error) {
-      console.log(error);
+Teaching Aids:
+- Textbook
+- Blackboard
+- Charts
+- Digital Content
 
-      setResult("Something went wrong");
-    }
+Classroom Activity:
+Students will participate in discussion and answer questions related to ${topic}.
 
-    setLoading(false);
-  }
+Assessment:
+1. Oral Questions
+2. Classwork
+3. Homework Assignment
 
-  function downloadLessonPlan() {
-    const element = document.createElement("a");
+Homework:
+Write short notes on ${topic}.
 
-    const file = new Blob([result], {
-      type: "text/plain",
-    });
+Conclusion:
+The lesson is summarized and important points are revised.
+    `;
 
-    element.href = URL.createObjectURL(file);
+    setResult(lesson);
+  };
 
-    element.download = `${topic}-lesson-plan.txt`;
+  const downloadLesson = () => {
+    const blob = new Blob([result], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
 
-    document.body.appendChild(element);
-
-    element.click();
-  }
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${topic}-lesson-plan.txt`;
+    a.click();
+  };
 
   return (
-    <div className="min-h-screen bg-black text-white p-10">
+    <main
+      style={{
+        background: "black",
+        minHeight: "100vh",
+        color: "white",
+        padding: "40px",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "800px",
+          margin: "auto",
+          background: "#081229",
+          padding: "30px",
+          borderRadius: "20px",
+          border: "2px solid cyan",
+        }}
+      >
+        <h1
+          style={{
+            textAlign: "center",
+            color: "cyan",
+            marginBottom: "30px",
+          }}
+        >
+          Chandu AI Educator
+        </h1>
 
-      <h1 className="text-6xl font-bold text-cyan-400 text-center mb-12">
-        Chandu AI Educator
-      </h1>
+        <input
+          placeholder="Subject"
+          value={subject}
+          onChange={(e) => setSubject(e.target.value)}
+          style={inputStyle}
+        />
 
-      <div className="max-w-4xl mx-auto bg-gray-900 border border-cyan-500 rounded-3xl p-10">
+        <input
+          placeholder="Faculty Name"
+          value={faculty}
+          onChange={(e) => setFaculty(e.target.value)}
+          style={inputStyle}
+        />
 
-        <h2 className="text-5xl font-bold mb-10">
-          AI Lesson Plan Generator
-        </h2>
+        <input
+          placeholder="Topic"
+          value={topic}
+          onChange={(e) => setTopic(e.target.value)}
+          style={inputStyle}
+        />
 
-        <div className="space-y-6">
+        <input
+          placeholder="Class"
+          value={className}
+          onChange={(e) => setClassName(e.target.value)}
+          style={inputStyle}
+        />
 
-          <input
-            type="text"
-            placeholder="Subject"
-            value={subject}
-            onChange={(e) => setSubject(e.target.value)}
-            className="w-full p-5 rounded-2xl bg-black border border-gray-700 text-xl"
-          />
+        <button onClick={generateLessonPlan} style={buttonStyle}>
+          Generate Lesson Plan
+        </button>
 
-          <input
-            type="text"
-            placeholder="Faculty Name"
-            value={faculty}
-            onChange={(e) => setFaculty(e.target.value)}
-            className="w-full p-5 rounded-2xl bg-black border border-gray-700 text-xl"
-          />
-
-          <input
-            type="text"
-            placeholder="Topic"
-            value={topic}
-            onChange={(e) => setTopic(e.target.value)}
-            className="w-full p-5 rounded-2xl bg-black border border-gray-700 text-xl"
-          />
-
-          <input
-            type="text"
-            placeholder="Class"
-            value={className}
-            onChange={(e) => setClassName(e.target.value)}
-            className="w-full p-5 rounded-2xl bg-black border border-gray-700 text-xl"
-          />
-
-          <button
-            onClick={generateLessonPlan}
-            className="w-full bg-cyan-400 text-black text-2xl font-bold py-5 rounded-2xl"
-          >
-            {loading ? "Generating..." : "Generate Lesson Plan"}
-          </button>
-
+        <div
+          style={{
+            background: "black",
+            padding: "20px",
+            marginTop: "30px",
+            borderRadius: "10px",
+            whiteSpace: "pre-wrap",
+            border: "1px solid cyan",
+          }}
+        >
+          {result || "No lesson plan generated"}
         </div>
 
-        {result && (
-          <div className="mt-10">
-
-            <div className="bg-black border border-cyan-500 p-6 rounded-2xl whitespace-pre-wrap text-lg">
-              {result}
-            </div>
-
-            <button
-              onClick={downloadLessonPlan}
-              className="mt-6 w-full bg-green-500 text-black text-xl font-bold py-4 rounded-2xl"
-            >
-              Download Lesson Plan
-            </button>
-
-          </div>
-        )}
-
+        <button
+          onClick={downloadLesson}
+          style={{
+            ...buttonStyle,
+            background: "#00cc44",
+            marginTop: "20px",
+          }}
+        >
+          Download Lesson Plan
+        </button>
       </div>
-    </div>
+    </main>
   );
 }
+
+const inputStyle = {
+  width: "100%",
+  padding: "18px",
+  marginBottom: "20px",
+  background: "black",
+  color: "white",
+  border: "1px solid cyan",
+  borderRadius: "10px",
+  fontSize: "18px",
+};
+
+const buttonStyle = {
+  width: "100%",
+  padding: "18px",
+  background: "cyan",
+  color: "black",
+  border: "none",
+  borderRadius: "10px",
+  fontSize: "22px",
+  fontWeight: "bold",
+  cursor: "pointer",
+};

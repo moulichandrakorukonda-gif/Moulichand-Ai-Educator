@@ -6,6 +6,12 @@ import {
   Paragraph,
   TextRun,
   HeadingLevel,
+  AlignmentType,
+  BorderStyle,
+  Table,
+  TableRow,
+  TableCell,
+  WidthType,
 } from "docx";
 
 import { saveAs } from "file-saver";
@@ -30,56 +36,90 @@ export default function LessonPlanGenerator({
           children: [
 
             new Paragraph({
-              text: "ICSE LESSON PLAN",
+              text: "PARAMJYOTI SCHOOL",
               heading: HeadingLevel.TITLE,
+              alignment: AlignmentType.CENTER,
             }),
 
             new Paragraph({
-              children: [
-                new TextRun({
-                  text: `Teacher: ${faculty}`,
-                  bold: true,
+              text: "PROFESSIONAL LESSON PLAN",
+              bold: true,
+              spacing: {
+                after: 400,
+              },
+              alignment: AlignmentType.CENTER,
+            }),
+
+            new Table({
+              width: {
+                size: 100,
+                type: WidthType.PERCENTAGE,
+              },
+
+              rows: [
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [new Paragraph("Faculty Name")],
+                    }),
+                    new TableCell({
+                      children: [new Paragraph(faculty)],
+                    }),
+                  ],
+                }),
+
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [new Paragraph("Subject")],
+                    }),
+                    new TableCell({
+                      children: [new Paragraph(subject)],
+                    }),
+                  ],
+                }),
+
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [new Paragraph("Topic")],
+                    }),
+                    new TableCell({
+                      children: [new Paragraph(topic)],
+                    }),
+                  ],
+                }),
+
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [new Paragraph("Class")],
+                    }),
+                    new TableCell({
+                      children: [new Paragraph(className)],
+                    }),
+                  ],
                 }),
               ],
             }),
 
             new Paragraph({
-              children: [
-                new TextRun({
-                  text: `Subject: ${subject}`,
-                  bold: true,
-                }),
-              ],
+              text: "",
+              spacing: { after: 300 },
             }),
 
             new Paragraph({
-              children: [
-                new TextRun({
-                  text: `Topic: ${topic}`,
-                  bold: true,
-                }),
-              ],
-            }),
-
-            new Paragraph({
-              children: [
-                new TextRun({
-                  text: `Class: ${className}`,
-                  bold: true,
-                }),
-              ],
-            }),
-
-            new Paragraph({ text: "" }),
-
-            new Paragraph({
-              text: "Curriculum Connection",
+              text: "Introduction",
               heading: HeadingLevel.HEADING_1,
             }),
 
             new Paragraph({
-              text:
-                `This lesson is aligned with ICSE curriculum objectives focusing on conceptual understanding, classroom interaction, and experiential learning related to ${topic}.`,
+              children: [
+                new TextRun({
+                  text:
+                    `The teacher introduces the topic "${topic}" with meaningful classroom interaction, real-life examples, and conceptual explanation to ensure clear understanding among students.`,
+                }),
+              ],
             }),
 
             new Paragraph({
@@ -88,98 +128,93 @@ export default function LessonPlanGenerator({
             }),
 
             new Paragraph({
-              text:
-                `• Students will understand the concept and importance of ${topic}.`,
+              text: `• Students understand the concept of ${topic}.`,
             }),
 
             new Paragraph({
-              text:
-                `• Students will develop analytical and observation skills through classroom interaction.`,
+              text: "• Students improve subject knowledge and analytical thinking.",
             }),
 
             new Paragraph({
-              text:
-                `• Students will actively participate in discussion-based learning.`,
+              text: "• Students actively participate in classroom discussion.",
             }),
 
             new Paragraph({
-              text: "Intended Learning Outcomes",
+              text: "Teaching Methodology",
+              heading: HeadingLevel.HEADING_1,
+            }),
+
+            new Paragraph({
+              text: "• Explanation Method",
+            }),
+
+            new Paragraph({
+              text: "• Blackboard Teaching",
+            }),
+
+            new Paragraph({
+              text: "• Interactive Learning",
+            }),
+
+            new Paragraph({
+              text: "• Activity-Based Teaching",
+            }),
+
+            new Paragraph({
+              text: "Teaching Aids",
+              heading: HeadingLevel.HEADING_1,
+            }),
+
+            new Paragraph({
+              text: "• Textbook",
+            }),
+
+            new Paragraph({
+              text: "• Blackboard",
+            }),
+
+            new Paragraph({
+              text: "• Charts and Diagrams",
+            }),
+
+            new Paragraph({
+              text: "• Digital Content",
+            }),
+
+            new Paragraph({
+              text: "Classroom Activity",
               heading: HeadingLevel.HEADING_1,
             }),
 
             new Paragraph({
               text:
-                `By the end of the lesson, students will confidently explain the core concepts of ${topic} and apply them in daily life situations.`,
+                `Students participate in group discussion, concept explanation, questioning sessions, and practical classroom interaction related to ${topic}.`,
             }),
 
             new Paragraph({
-              text: "Tune In Activity",
+              text: "Assessment",
               heading: HeadingLevel.HEADING_1,
             }),
 
             new Paragraph({
               text:
-                `The teacher begins the session with inquiry-based questions, real-life examples, and interactive discussion to activate prior knowledge among students.`,
+                "The teacher evaluates students through oral questioning, classroom participation, written responses, and understanding of concepts taught during the session.",
             }),
 
             new Paragraph({
-              text: "Procedure / Content",
-              heading: HeadingLevel.HEADING_1,
+              text: "",
+              spacing: {
+                after: 500,
+              },
             }),
 
             new Paragraph({
-              text:
-                `1. Introduction of topic using classroom interaction.`,
-            }),
-
-            new Paragraph({
-              text:
-                `2. Detailed explanation of ${topic} with suitable examples.`,
-            }),
-
-            new Paragraph({
-              text:
-                `3. Blackboard teaching and concept clarification.`,
-            }),
-
-            new Paragraph({
-              text:
-                `4. Student participation activity and questioning.`,
-            }),
-
-            new Paragraph({
-              text:
-                `5. Recap and reinforcement of key concepts.`,
-            }),
-
-            new Paragraph({
-              text: "Resources",
-              heading: HeadingLevel.HEADING_1,
-            }),
-
-            new Paragraph({
-              text:
-                `• Textbook\n• Blackboard\n• Charts\n• Classroom Discussion`,
-            }),
-
-            new Paragraph({
-              text: "Reflection",
-              heading: HeadingLevel.HEADING_1,
-            }),
-
-            new Paragraph({
-              text:
-                `Students demonstrated active engagement and conceptual understanding during the classroom interaction.`,
-            }),
-
-            new Paragraph({
-              text: "Evaluation",
-              heading: HeadingLevel.HEADING_1,
-            }),
-
-            new Paragraph({
-              text:
-                `Assessment was carried out through oral questioning, interaction, and classroom participation.`,
+              children: [
+                new TextRun({
+                  text: "Faculty Signature: ____________________",
+                  bold: true,
+                }),
+              ],
             }),
           ],
         },

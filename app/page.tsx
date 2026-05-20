@@ -4,6 +4,7 @@ import { useState } from "react";
 import LessonPlanGenerator from "./components/LessonPlanGenerator";
 
 export default function Home() {
+
   const [subject, setSubject] = useState("");
   const [faculty, setFaculty] = useState("");
   const [topic, setTopic] = useState("");
@@ -29,12 +30,12 @@ export default function Home() {
           border: "2px solid #00d9ff",
         }}
       >
+
         <h1
           style={{
             textAlign: "center",
             color: "#00d9ff",
             marginBottom: "30px",
-            fontSize: "40px",
           }}
         >
           Chandu AI Educator
@@ -68,18 +69,13 @@ export default function Home() {
           style={inputStyle}
         />
 
-        <div
-          style={{
-            marginTop: "30px",
-          }}
-        >
-          <LessonPlanGenerator
-            subject={subject}
-            faculty={faculty}
-            topic={topic}
-            className={className}
-          />
-        </div>
+        <LessonPlanGenerator
+          subject={subject}
+          faculty={faculty}
+          topic={topic}
+          className={className}
+        />
+
       </div>
     </main>
   );

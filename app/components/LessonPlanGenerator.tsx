@@ -7,7 +7,6 @@ import {
   TextRun,
   HeadingLevel,
   AlignmentType,
-  BorderStyle,
   Table,
   TableRow,
   TableCell,
@@ -36,18 +35,17 @@ export default function LessonPlanGenerator({
           children: [
 
             new Paragraph({
-              text: "PARAMJYOTI SCHOOL",
+              text: "ICSE LESSON PLAN",
               heading: HeadingLevel.TITLE,
               alignment: AlignmentType.CENTER,
             }),
 
             new Paragraph({
-              text: "PROFESSIONAL LESSON PLAN",
-              bold: true,
+              text: "Bachelor of Education",
+              alignment: AlignmentType.CENTER,
               spacing: {
                 after: 400,
               },
-              alignment: AlignmentType.CENTER,
             }),
 
             new Table({
@@ -57,13 +55,19 @@ export default function LessonPlanGenerator({
               },
 
               rows: [
+
                 new TableRow({
                   children: [
                     new TableCell({
-                      children: [new Paragraph("Faculty Name")],
+                      children: [
+                        new Paragraph("Teacher Education Student"),
+                      ],
                     }),
+
                     new TableCell({
-                      children: [new Paragraph(faculty)],
+                      children: [
+                        new Paragraph(faculty),
+                      ],
                     }),
                   ],
                 }),
@@ -71,10 +75,15 @@ export default function LessonPlanGenerator({
                 new TableRow({
                   children: [
                     new TableCell({
-                      children: [new Paragraph("Subject")],
+                      children: [
+                        new Paragraph("Learning Area"),
+                      ],
                     }),
+
                     new TableCell({
-                      children: [new Paragraph(subject)],
+                      children: [
+                        new Paragraph(subject),
+                      ],
                     }),
                   ],
                 }),
@@ -82,10 +91,15 @@ export default function LessonPlanGenerator({
                 new TableRow({
                   children: [
                     new TableCell({
-                      children: [new Paragraph("Topic")],
+                      children: [
+                        new Paragraph("Year Level"),
+                      ],
                     }),
+
                     new TableCell({
-                      children: [new Paragraph(topic)],
+                      children: [
+                        new Paragraph(className),
+                      ],
                     }),
                   ],
                 }),
@@ -93,10 +107,47 @@ export default function LessonPlanGenerator({
                 new TableRow({
                   children: [
                     new TableCell({
-                      children: [new Paragraph("Class")],
+                      children: [
+                        new Paragraph("Class Size"),
+                      ],
                     }),
+
                     new TableCell({
-                      children: [new Paragraph(className)],
+                      children: [
+                        new Paragraph("40 Students"),
+                      ],
+                    }),
+                  ],
+                }),
+
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph("Timing"),
+                      ],
+                    }),
+
+                    new TableCell({
+                      children: [
+                        new Paragraph("45 Minutes"),
+                      ],
+                    }),
+                  ],
+                }),
+
+                new TableRow({
+                  children: [
+                    new TableCell({
+                      children: [
+                        new Paragraph("Topic"),
+                      ],
+                    }),
+
+                    new TableCell({
+                      children: [
+                        new Paragraph(topic),
+                      ],
                     }),
                   ],
                 }),
@@ -105,21 +156,23 @@ export default function LessonPlanGenerator({
 
             new Paragraph({
               text: "",
-              spacing: { after: 300 },
+              spacing: {
+                after: 300,
+              },
             }),
 
             new Paragraph({
-              text: "Introduction",
+              text: "Curriculum Connections",
               heading: HeadingLevel.HEADING_1,
             }),
 
             new Paragraph({
-              children: [
-                new TextRun({
-                  text:
-                    `The teacher introduces the topic "${topic}" with meaningful classroom interaction, real-life examples, and conceptual explanation to ensure clear understanding among students.`,
-                }),
-              ],
+              text:
+                `This lesson connects with the ICSE curriculum objectives related to ${topic}. The content helps students improve conceptual understanding, classroom interaction, and subject knowledge.`,
+            }),
+
+            new Paragraph({
+              text: "",
             }),
 
             new Paragraph({
@@ -132,7 +185,7 @@ export default function LessonPlanGenerator({
             }),
 
             new Paragraph({
-              text: "• Students improve subject knowledge and analytical thinking.",
+              text: "• Students improve analytical and conceptual thinking.",
             }),
 
             new Paragraph({
@@ -140,28 +193,58 @@ export default function LessonPlanGenerator({
             }),
 
             new Paragraph({
-              text: "Teaching Methodology",
+              text: "",
+            }),
+
+            new Paragraph({
+              text: "Intended Learning Outcomes",
               heading: HeadingLevel.HEADING_1,
             }),
 
             new Paragraph({
-              text: "• Explanation Method",
+              text:
+                `By the end of the lesson, students will be able to explain the topic "${topic}" clearly and answer conceptual questions confidently.`,
             }),
 
             new Paragraph({
-              text: "• Blackboard Teaching",
+              text: "",
             }),
 
             new Paragraph({
-              text: "• Interactive Learning",
+              text: "Tune In Activity",
+              heading: HeadingLevel.HEADING_1,
             }),
 
             new Paragraph({
-              text: "• Activity-Based Teaching",
+              text:
+                `The teacher begins the lesson with real-life examples, questioning techniques, and classroom interaction related to ${topic}.`,
             }),
 
             new Paragraph({
-              text: "Teaching Aids",
+              text: "",
+            }),
+
+            new Paragraph({
+              text: "Procedure [Content]",
+              heading: HeadingLevel.HEADING_1,
+            }),
+
+            new Paragraph({
+              text:
+                `The teacher explains the topic "${topic}" using blackboard teaching, explanation method, diagrams, questioning sessions, and interactive learning strategies.`,
+            }),
+
+            new Paragraph({
+              text:
+                "Students participate in note-taking, observation, discussion, and classroom activities.",
+            }),
+
+            new Paragraph({
+              text: "",
+            }),
+
+            new Paragraph({
+              text: "Resources",
               heading: HeadingLevel.HEADING_1,
             }),
 
@@ -182,23 +265,31 @@ export default function LessonPlanGenerator({
             }),
 
             new Paragraph({
-              text: "Classroom Activity",
+              text: "",
+            }),
+
+            new Paragraph({
+              text: "Reflection",
               heading: HeadingLevel.HEADING_1,
             }),
 
             new Paragraph({
               text:
-                `Students participate in group discussion, concept explanation, questioning sessions, and practical classroom interaction related to ${topic}.`,
+                "The lesson was conducted successfully with active classroom participation and conceptual understanding among students.",
             }),
 
             new Paragraph({
-              text: "Assessment",
+              text: "",
+            }),
+
+            new Paragraph({
+              text: "Evaluation",
               heading: HeadingLevel.HEADING_1,
             }),
 
             new Paragraph({
               text:
-                "The teacher evaluates students through oral questioning, classroom participation, written responses, and understanding of concepts taught during the session.",
+                "Students were evaluated through oral questioning, written responses, and classroom participation during the lesson.",
             }),
 
             new Paragraph({
@@ -223,7 +314,7 @@ export default function LessonPlanGenerator({
 
     const blob = await Packer.toBlob(doc);
 
-    saveAs(blob, `${topic}-Lesson-Plan.docx`);
+    saveAs(blob, `${topic}-ICSE-Lesson-Plan.docx`);
   };
 
   return (
